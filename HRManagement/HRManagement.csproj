@@ -215,26 +215,6 @@
     <Compile Include="Migrations\201604181928318_InitialCreate.Designer.cs">
       <DependentUpon>201604181928318_InitialCreate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201604181938498_StringLength.cs" />
-    <Compile Include="Migrations\201604181938498_StringLength.Designer.cs">
-      <DependentUpon>201604181938498_StringLength.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201604181954322_AttributesEmployee.cs" />
-    <Compile Include="Migrations\201604181954322_AttributesEmployee.Designer.cs">
-      <DependentUpon>201604181954322_AttributesEmployee.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201604182317243_PositionIdentifiction.cs" />
-    <Compile Include="Migrations\201604182317243_PositionIdentifiction.Designer.cs">
-      <DependentUpon>201604182317243_PositionIdentifiction.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201604182319342_PositionBack.cs" />
-    <Compile Include="Migrations\201604182319342_PositionBack.Designer.cs">
-      <DependentUpon>201604182319342_PositionBack.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201604201649063_RemovedListOfPositions.cs" />
-    <Compile Include="Migrations\201604201649063_RemovedListOfPositions.Designer.cs">
-      <DependentUpon>201604201649063_RemovedListOfPositions.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -247,12 +227,6 @@
   <ItemGroup>
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />
-    <Content Include="EmployeeData\Images\11.png" />
-    <Content Include="EmployeeData\Images\12.png" />
-    <Content Include="EmployeeData\Images\13.png" />
-    <Content Include="EmployeeData\Images\14.png" />
-    <Content Include="EmployeeData\Images\17.png" />
-    <Content Include="EmployeeData\Images\8" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
@@ -351,6 +325,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="EmployeeData\Images\" />
     <Folder Include="EmployeeData\Reports\" />
     <Folder Include="Views\Reports\" />
   </ItemGroup>
@@ -382,21 +357,6 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201604181928318_InitialCreate.resx">
       <DependentUpon>201604181928318_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201604181938498_StringLength.resx">
-      <DependentUpon>201604181938498_StringLength.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201604181954322_AttributesEmployee.resx">
-      <DependentUpon>201604181954322_AttributesEmployee.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201604182317243_PositionIdentifiction.resx">
-      <DependentUpon>201604182317243_PositionIdentifiction.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201604182319342_PositionBack.resx">
-      <DependentUpon>201604182319342_PositionBack.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201604201649063_RemovedListOfPositions.resx">
-      <DependentUpon>201604201649063_RemovedListOfPositions.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
