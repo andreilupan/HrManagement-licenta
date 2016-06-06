@@ -33,12 +33,13 @@ namespace HRManagement.Controllers
         [Route("Positions/EmployeesAssignedToPosition/{positionId}")]
         public ActionResult EmployeesAssignedToPosition(int positionId)
         {
-            var model = new ViewModels.Position.EmployeesAssignedToPositionViewModel
+            var model = new ViewModels.Position.PositionIndexDataViewModel
             {
-                Employees = _positionService.GetEmployeesForPosition(positionId)
+                Positions = _positionService.GetAllPositions(),
+                EmployeesAssignedToPosition = _positionService.GetEmployeesForPosition(positionId)
             };
 
-            return View(model);
+            return View("Index", model);
         }
 
         // GET: Positions/Details/5

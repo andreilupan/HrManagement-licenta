@@ -49,8 +49,25 @@ namespace HRManagement
             xlWorkSheetToExport.Cells[iRowCnt - 1, 3] = "Gender";
             xlWorkSheetToExport.Cells[iRowCnt - 1, 4] = "Nationality";
             xlWorkSheetToExport.Cells[iRowCnt - 1, 5] = "Positions";
-            xlWorkSheetToExport.Cells[iRowCnt - 1, 6] = "Languages";
+            xlWorkSheetToExport.Cells[iRowCnt - 1, 6] = "Projects";
             xlWorkSheetToExport.Cells[iRowCnt - 1, 7] = "Trainings";
+            xlWorkSheetToExport.Cells[iRowCnt - 1, 8] = "Address";
+            xlWorkSheetToExport.Cells[iRowCnt - 1, 9] = "City";
+            xlWorkSheetToExport.Cells[iRowCnt - 1, 10] = "Postal code";
+            xlWorkSheetToExport.Cells[iRowCnt - 1, 11] = "State";
+            xlWorkSheetToExport.Cells[iRowCnt - 1, 12] = "Work phone";
+            xlWorkSheetToExport.Cells[iRowCnt - 1, 13] = "Private phone";
+            xlWorkSheetToExport.Cells[iRowCnt - 1, 14] = "Work e-mail";
+            xlWorkSheetToExport.Cells[iRowCnt - 1, 15] = "Private e-mail";
+            xlWorkSheetToExport.Cells[iRowCnt - 1, 16] = "Employment date";
+            xlWorkSheetToExport.Cells[iRowCnt - 1, 17] = "Jubilee date";
+            xlWorkSheetToExport.Cells[iRowCnt - 1, 18] = "Date for formal professional competence";
+            xlWorkSheetToExport.Cells[iRowCnt - 1, 19] = "Date for formal teaching skills";
+            xlWorkSheetToExport.Cells[iRowCnt - 1, 20] = "Salary";
+            xlWorkSheetToExport.Cells[iRowCnt - 1, 21] = "Next salary discussion";
+            xlWorkSheetToExport.Cells[iRowCnt - 1, 22] = "Account";
+            xlWorkSheetToExport.Cells[iRowCnt - 1, 23] = "Bank";
+
 
             int i;
             for (i = 0; i <= data.Count() - 1; i++)
@@ -60,8 +77,25 @@ namespace HRManagement
                 xlWorkSheetToExport.Cells[iRowCnt, 3] = data.ElementAt(i).Gender;
                 xlWorkSheetToExport.Cells[iRowCnt, 4] = data.ElementAt(i).Nationality;
                 xlWorkSheetToExport.Cells[iRowCnt, 5] = data.ElementAt(i).Positions;
-                xlWorkSheetToExport.Cells[iRowCnt, 6] = data.ElementAt(i).Languages;
+                xlWorkSheetToExport.Cells[iRowCnt, 6] = data.ElementAt(i).Projects;
                 xlWorkSheetToExport.Cells[iRowCnt, 7] = data.ElementAt(i).Trainings;
+                xlWorkSheetToExport.Cells[iRowCnt, 8] = data.ElementAt(i).Address;
+                xlWorkSheetToExport.Cells[iRowCnt, 9] = data.ElementAt(i).City;
+                xlWorkSheetToExport.Cells[iRowCnt, 10] = data.ElementAt(i).PostalCode;
+                xlWorkSheetToExport.Cells[iRowCnt, 11] = data.ElementAt(i).State;
+                xlWorkSheetToExport.Cells[iRowCnt, 12] = data.ElementAt(i).WorkPhone;
+                xlWorkSheetToExport.Cells[iRowCnt, 13] = data.ElementAt(i).PrivatePhone;
+                xlWorkSheetToExport.Cells[iRowCnt, 14] = data.ElementAt(i).WorkEmail;
+                xlWorkSheetToExport.Cells[iRowCnt, 15] = data.ElementAt(i).PrivateEmail;
+                xlWorkSheetToExport.Cells[iRowCnt, 16] = data.ElementAt(i).EmploymentDate;
+                xlWorkSheetToExport.Cells[iRowCnt, 17] = data.ElementAt(i).JubileeDate;
+                xlWorkSheetToExport.Cells[iRowCnt, 18] = data.ElementAt(i).DateForFormalProfessionalCompetence;
+                xlWorkSheetToExport.Cells[iRowCnt, 19] = data.ElementAt(i).DateForFormalTeachingSkills;
+                xlWorkSheetToExport.Cells[iRowCnt, 20] = data.ElementAt(i).Salary;
+                xlWorkSheetToExport.Cells[iRowCnt, 21] = data.ElementAt(i).NextSalaryIncrease;
+                xlWorkSheetToExport.Cells[iRowCnt, 22] = data.ElementAt(i).AccountNumber;
+                xlWorkSheetToExport.Cells[iRowCnt, 23] = data.ElementAt(i).Bank;
+          
 
 
                 iRowCnt = iRowCnt + 1;

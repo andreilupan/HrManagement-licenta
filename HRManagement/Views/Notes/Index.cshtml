@@ -28,9 +28,7 @@
                     @Html.ActionLink("Pin note", "SetStatus", "Notes", new { active = true, id = @item.Id }, new { @class = "btn btn-success btn-sm" })
                 }
             </td>
-            <td>
-                @Html.ActionLink("Edit note", "Edit", new { id = item.Id }, new { @class = "btn btn-primary btn-sm" })
-            </td>
+
             <td>
                 @Html.ActionLink("Delete note", "Delete", new { id = item.Id }, new { @class = "btn btn-danger btn-sm" })
             </td>

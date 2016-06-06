@@ -5,6 +5,7 @@ using HRManagement.DataAccess.Models.Models;
 using HRManagement.Application;
 using HRManagement.ViewModels.Employee;
 using System.Linq;
+using System;
 
 namespace HRManagement.Controllers
 {
@@ -231,8 +232,25 @@ namespace HRManagement.Controllers
                 Gender = x.Gender.ToString(),
                 Nationality = x.Nationality,
                 Positions = x.Position.Name,
-                Languages = "English",
-                Trainings = x.Trainings.Any() ? x.Trainings.Select(y => y.Name).Aggregate((current, next) => current + " , " + next) : ""
+                Projects = x.Project.Name,
+                Trainings = x.Trainings.Any() ? x.Trainings.Select(y => y.Name).Aggregate((current, next) => current + " , " + next) : "",
+                Address = x.ContactInformation.Address,
+                City = x.ContactInformation.City,
+                PostalCode = x.ContactInformation.PostalCode,
+                State = x.ContactInformation.State,
+                WorkPhone = x.ContactInformation.WorkPhone,
+                PrivatePhone = x.ContactInformation.PrivatePhone,
+                WorkEmail = x.ContactInformation.WorkEmail,
+                PrivateEmail = x.ContactInformation.PrivateEmail,
+                EmploymentDate = x.EmploymentInformation.EmploymentDate,
+                JubileeDate = x.EmploymentInformation.JubileeDate,
+                DateForFormalProfessionalCompetence = x.EmploymentInformation.DateForFormalProfessionalCompetence,
+                DateForFormalTeachingSkills = x.EmploymentInformation.DateForFormalTeachingSkills,
+                Salary = x.FinancialInformation.Salary,
+                NextSalaryIncrease = x.FinancialInformation.NextSalaryIncrease,
+                AccountNumber = x.FinancialInformation.AccountNumber,
+                Bank = x.FinancialInformation.Bank
+
             }).ToList();
             var url = _employeeExporter.ExportEmployees(employees, "employees");
             return File(url, "application/vnd.ms-excel", "employees.xlsx");
@@ -258,7 +276,23 @@ namespace HRManagement.Controllers
         public System.DateTime DateOfBirth { get; set; }
         public string Gender { get; set; }
         public string Nationality { get; set; }
-        public string Languages { get; set; }
+        public string Projects { get; set; }
         public string Name { get; set; }
+        public string Address { get; set; }
+        public string City { get; set; }
+        public string PostalCode { get; set; }
+        public string State { get; set; }
+        public string WorkPhone { get; set; }
+        public string PrivatePhone { get; set; }
+        public string WorkEmail { get; set; }
+        public string PrivateEmail { get; set; }
+        public DateTime EmploymentDate { get; set; }
+        public DateTime JubileeDate { get; set; }
+        public DateTime DateForFormalProfessionalCompetence { get; set; }
+        public DateTime DateForFormalTeachingSkills { get; set; }
+        public Decimal Salary { get; set; }
+        public DateTime NextSalaryIncrease { get; set; }
+        public string AccountNumber { get; set; }
+        public string Bank { get; set; }
     }
 }

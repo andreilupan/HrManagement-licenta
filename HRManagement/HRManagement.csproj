@@ -197,6 +197,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\DocumentsController.cs" />
     <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -315,13 +316,14 @@
     <Content Include="Views\Employees\GetContactInformationForEmployee.cshtml" />
     <Content Include="Views\Employees\GetEmploymentInformationForEmployee.cshtml" />
     <Content Include="Views\Employees\GetContactInformationForEdit.cshtml" />
-    <Content Include="Views\Positions\EmployeesAssignedToPosition.cshtml" />
     <Content Include="Views\Notes\Index.cshtml" />
     <Content Include="Scripts\notifications.js" />
     <Content Include="Views\Employees\Partials\_EmployeeEditSidebar.cshtml" />
     <Content Include="Views\Employees\GetEmploymentInformationForEdit.cshtml" />
     <Content Include="Views\Employees\GetFinancialInformationforEdit.cshtml" />
     <Content Include="Views\Employees\GetFinancialInformationForEmployee.cshtml" />
+    <Content Include="Views\Documents\Index.cshtml" />
+    <Content Include="Views\Notes\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

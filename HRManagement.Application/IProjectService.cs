@@ -10,5 +10,6 @@ namespace HRManagement.Application
     public interface IProjectService
     {
         List<Project> GetAllProjects();
+        List<ViewModels.Project.EmployeesAssignedToProjectViewModel> GetEmployeesForProject(int? id);
     }
 }

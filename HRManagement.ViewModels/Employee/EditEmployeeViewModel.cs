@@ -28,7 +28,7 @@ namespace HRManagement.ViewModels.Employee
         public HttpPostedFileBase ImageUpload { get; set; }
 
         public List<Models.Position> Positions { get; set; }
-        public List<Project> Projects { get; set; }
+        public List<Models.Project> Projects { get; set; }
 
         [DataType(DataType.Date)]
         [Display(Name = "Date of birth")]

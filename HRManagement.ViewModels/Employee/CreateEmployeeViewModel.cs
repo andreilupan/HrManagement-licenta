@@ -50,7 +50,7 @@ namespace HRManagement.ViewModels.Employee
         [Required]
         public List<Models.Position> Positions { get; set; }
         [Required]
-        public List<Project> Projects { get; set; }
+        public List<Models.Project> Projects { get; set; }
         [Required]
         public string Address { get; set; }
         [Required]

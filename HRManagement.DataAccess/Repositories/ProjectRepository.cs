@@ -14,5 +14,9 @@ namespace HRManagement.DataAccess.Repositories
         {
             return _dbContext.Projects;
         }
+        public Project GetProjectById(int? id)
+        {
+            return _dbContext.Projects.Find(id);
+        }
     }
 }

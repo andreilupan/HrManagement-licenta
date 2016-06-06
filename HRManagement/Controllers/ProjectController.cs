@@ -25,8 +25,24 @@ namespace HRManagement.Controllers
         // GET: Project
         public ActionResult Index()
         {
-            var model = _projectService.GetAllProjects();
+            var model = new ViewModels.Project.ProjectIndexDataViewModel
+            {
+                Projects = _projectService.GetAllProjects(),
+            };
+
             return View(model);
+        }
+
+        [Route("Project/EmployeesAssignedToProjects/{projectId}")]
+        public ActionResult EmployeesAssignedToProjects(int projectId)
+        {
+            var model = new ViewModels.Project.ProjectIndexDataViewModel
+            {
+                Projects = _projectService.GetAllProjects(),
+                EmployeesAssignedToProjects = _projectService.GetEmployeesForProject(projectId)
+            };
+
+            return View("Index", model);
         }
 
         // GET: Project/Details/5

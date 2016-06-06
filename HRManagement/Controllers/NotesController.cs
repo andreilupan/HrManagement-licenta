@@ -1,11 +1,15 @@
 ﻿using System.Web.Mvc;
 using HRManagement.Application;
+using HRManagement.DataAccess.Models.Models;
+using HRManagement.DataAccess;
+using System.Net;
 
 namespace HRManagement.Controllers
 {
     public class NotesController : Controller
     {
         private INotesService _notesService;
+        public HrContext db = new HrContext();
 
         public NotesController(Application.INotesService notesService)
         {
@@ -34,6 +38,31 @@ namespace HRManagement.Controllers
         {
             _notesService.CreateNote(note.Text, User.Identity.Name);
 
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Note note = db.Notes.Find(id);
+            if (note == null)
+            {
+                return HttpNotFound();
+            }
+            return View(note);
+        }
+
+        // POST: Positions/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            Note note = db.Notes.Find(id);
+            db.Notes.Remove(note);
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
 

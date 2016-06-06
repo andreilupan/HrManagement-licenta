@@ -10,7 +10,8 @@ namespace HRManagement
         {
             if (image != null)
             {
-                var imagePath = Path.Combine(HttpContext.Current.Server.MapPath(uploadDir), employeeId.ToString()+"."+image.FileName.Split('.')[1]);
+                var imagePath = Path.Combine(HttpContext.Current.Server.MapPath(uploadDir), employeeId.ToString()+"."+Path.GetExtension(image.FileName));
+                //var imagePath = Path.Combine(HttpContext.Current.Server.MapPath(uploadDir), employeeId.ToString()+"."+image.FileName.Split('.')[1]);
                 var imageUrl = uploadDir + "/" +employeeId.ToString() + "."+(image.FileName.Split('.')[1]);
                 image.SaveAs(imagePath);
                 return imageUrl;

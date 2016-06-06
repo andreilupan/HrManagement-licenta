@@ -6,7 +6,7 @@ namespace HRManagement.ViewModels.Position
     public class PositionIndexDataViewModel
     {
         public List<Models.Position> Positions { get; set; }
-        public List<EmployeesAssignedToPositionViewModel> EmployeesAssignedToPosition { get; set; }
+        public List<EmployeesAssignedToPositionListItem> EmployeesAssignedToPosition { get; set; }
 
     }
 }
