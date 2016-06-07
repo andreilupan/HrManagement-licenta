@@ -1,6 +1,5 @@
 ﻿using HRManagement.DataAccess.Models.Models;
 using HRManagement.DataAccess.Repositories;
-using HRManagement.ViewModels.Project;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,11 +19,11 @@ namespace HRManagement.Application
         {
             return _projectRepository.GetAllProjects().ToList();
         }
-        List<EmployeesAssignedToProjectViewModel> IProjectService.GetEmployeesForProject(int? id)
+        List<ViewModels.Project.EmployeesAssignedToProjectViewModel> IProjectService.GetEmployeesForProject(int? id)
         {
             var projectEmployees = _projectRepository.GetProjectById(id).Employees;
 
-            return projectEmployees.Select(x => new EmployeesAssignedToProjectViewModel
+            return projectEmployees.Select(x => new ViewModels.Project.EmployeesAssignedToProjectViewModel
             {
                 Id = x.Id,
                 EmployeeFirstName = x.FirstName,

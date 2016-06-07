@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EmployeeService.cs" />
+    <Compile Include="HRManagement\ViewModels\Project.cs" />
     <Compile Include="IEmployeeService.cs" />
     <Compile Include="INotesService.cs" />
     <Compile Include="ITrainingService.cs" />
