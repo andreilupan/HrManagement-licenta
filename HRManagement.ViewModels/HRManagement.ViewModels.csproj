@@ -52,6 +52,8 @@
     <Compile Include="Employee\GetEmploymentInformationForEmployeeViewModel.cs" />
     <Compile Include="Employee\GetFinancialInformationForEmployeeViewModel.cs" />
     <Compile Include="Employee\GetTrainingListForEmployeeViewModel.cs" />
+    <Compile Include="Employee\GetTrainingListForEmployeeToAssignViewModel.cs" />
+    <Compile Include="Employee\GetTrainingsForEmployeeToAssignViewModel.cs" />
     <Compile Include="Extensions\TrainingStatusExtensions.cs" />
     <Compile Include="Employee\GetTrainingForEmployeeViewModel.cs" />
     <Compile Include="Notes\NotesIndexViewModel.cs" />

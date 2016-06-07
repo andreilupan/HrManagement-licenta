@@ -16,14 +16,27 @@ namespace HRManagement.Controllers
         public HrContext db = new HrContext();
         private ImageService _imageService;
         private IExcelExporter _employeeExporter;
+        private ITrainingService _trainingService;
 
-        public EmployeesController(IEmployeeService employeeService, ImageService imageService, IExcelExporter employeeExporter)
+        public EmployeesController(IEmployeeService employeeService, ImageService imageService, IExcelExporter employeeExporter, ITrainingService trainingService)
         {
             _employeeService = employeeService;
             _imageService = imageService;
             _employeeExporter = employeeExporter;
+            _trainingService = trainingService;
         }
 
+
+        public ActionResult EmployeesAssignedToTraining(int? trainingId)
+        {
+            var model = new ViewModels.Training.TrainingIndexDataViewModel
+            {
+                Trainings = _trainingService.GetAllTrainings(),
+                EmployeesAssignedToTrainings = _trainingService.GetEmployeesForTraining(trainingId)
+            };
+
+            return View("Index", model);
+        }
         // GET: Employees
         public ActionResult Index()
         {

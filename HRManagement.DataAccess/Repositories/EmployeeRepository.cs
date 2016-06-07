@@ -104,44 +104,47 @@ namespace HRManagement.DataAccess.Repositories
             return user.FinancialInformation;
         }
 
-        public void EditFinancialInformation(int employeeId, Decimal salary, DateTime nextSalaryDiscussion, string accountNumber, string bank)
+        public void EditFinancialInformation(int financialInformationId, Decimal salary, DateTime nextSalaryDiscussion, string accountNumber, string bank)
         {
-            var employee = _dbContext.Employees.Find(employeeId);
+            //var employee = _dbContext.Employees.Find(employeeId);
+            var financialInformation = _dbContext.FinancialInformation.Find(financialInformationId);
 
-            employee.FinancialInformation.Salary = salary;
-            employee.FinancialInformation.NextSalaryIncrease = nextSalaryDiscussion;
-            employee.FinancialInformation.AccountNumber = accountNumber;
-            employee.FinancialInformation.Bank = bank;
+            financialInformation.Salary = salary;
+            financialInformation.NextSalaryIncrease = nextSalaryDiscussion;
+            financialInformation.AccountNumber = accountNumber;
+            financialInformation.Bank = bank;
 
             _dbContext.SaveChanges();
 
         }
 
-        public void EditContactInformation(int employeeId, string address, string city, string postalCode, string state, string workPhone, string privatePhone, string workEmail, string privateEmail)
+        public void EditContactInformation(int contactInformationId, string address, string city, string postalCode, string state, string workPhone, string privatePhone, string workEmail, string privateEmail)
         {
-            var employee = _dbContext.Employees.Find(employeeId);
+            // var employee = _dbContext.Employees.Find(employeeId);
+            var contactInformation = _dbContext.ContactInformation.Find(contactInformationId);
 
-            employee.ContactInformation.Address = address;
-            employee.ContactInformation.City = city;
-            employee.ContactInformation.PostalCode = postalCode;
-            employee.ContactInformation.State = state;
-            employee.ContactInformation.WorkPhone = workPhone;
-            employee.ContactInformation.PrivatePhone = privatePhone;
-            employee.ContactInformation.WorkEmail = workEmail;
-            employee.ContactInformation.PrivateEmail = privateEmail;
+            contactInformation.Address = address;
+            contactInformation.City = city;
+            contactInformation.PostalCode = postalCode;
+            contactInformation.State = state;
+            contactInformation.WorkPhone = workPhone;
+            contactInformation.PrivatePhone = privatePhone;
+            contactInformation.WorkEmail = workEmail;
+            contactInformation.PrivateEmail = privateEmail;
 
             _dbContext.SaveChanges();
 
         }
 
-        public void EditEmploymentInformation(int employeeId, DateTime employmentDate, DateTime jubileeDate, DateTime dateProfessionalCompetence, DateTime dateTeachingSkills)
+        public void EditEmploymentInformation(int employmentInformationId, DateTime employmentDate, DateTime jubileeDate, DateTime dateProfessionalCompetence, DateTime dateTeachingSkills)
         {
-            var employee = _dbContext.Employees.Find(employeeId);
+            //var employee = _dbContext.Employees.Find(employeeId);
+            var employmentInformation = _dbContext.EmploymentInformation.Find(employmentInformationId);
 
-            employee.EmploymentInformation.EmploymentDate = employmentDate;
-            employee.EmploymentInformation.JubileeDate = jubileeDate;
-            employee.EmploymentInformation.DateForFormalProfessionalCompetence = dateProfessionalCompetence;
-            employee.EmploymentInformation.DateForFormalTeachingSkills = dateTeachingSkills;
+            employmentInformation.EmploymentDate = employmentDate;
+            employmentInformation.JubileeDate = jubileeDate;
+            employmentInformation.DateForFormalProfessionalCompetence = dateProfessionalCompetence;
+            employmentInformation.DateForFormalTeachingSkills = dateTeachingSkills;
 
             _dbContext.SaveChanges();
         }

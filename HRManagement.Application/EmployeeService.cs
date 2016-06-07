@@ -14,12 +14,14 @@ namespace HRManagement.Application
         private IEmployeeRepository _employeeRepository;
         private IPositionRepository _positionRepository;
         private IProjectRepository _projectRepository;
+        private ITrainingRepository _trainingRepository;
 
-        public EmployeeService(IEmployeeRepository employeeRepository, IPositionRepository positionRepository, IProjectRepository projectRepository/*, IContactInformationRepository contactInformationRepository*/)
+        public EmployeeService(IEmployeeRepository employeeRepository, IPositionRepository positionRepository, IProjectRepository projectRepository, ITrainingRepository trainingRepository)
         {
             _employeeRepository = employeeRepository;
             _positionRepository = positionRepository;
             _projectRepository = projectRepository;
+            _trainingRepository = trainingRepository;
 
 
         }
@@ -197,19 +199,19 @@ namespace HRManagement.Application
             _employeeRepository.SetChangesForEmployee(employeeId, positionId, projectId, lastName, middleName, firstName, dateOfBirth, gender, nationality, nID);
         }
 
-        public void EditContactInformation(int employeeId, string address, string city, string postalCode, string state, string workPhone, string privatePhone, string workEmail, string privateEmail)
+        public void EditContactInformation(int financialInformationId, string address, string city, string postalCode, string state, string workPhone, string privatePhone, string workEmail, string privateEmail)
         {
-            _employeeRepository.EditContactInformation(employeeId, address, city, postalCode, state, workPhone, privatePhone, workEmail, privateEmail);
+            _employeeRepository.EditContactInformation(financialInformationId, address, city, postalCode, state, workPhone, privatePhone, workEmail, privateEmail);
         }
 
-        public void EditEmploymentInformation(int employeeId, DateTime employmentDate, DateTime jubileeDate, DateTime dateProfessionalCompetence, DateTime dateTeachingSkills)
+        public void EditEmploymentInformation(int employmentInformationId, DateTime employmentDate, DateTime jubileeDate, DateTime dateProfessionalCompetence, DateTime dateTeachingSkills)
         {
-            _employeeRepository.EditEmploymentInformation(employeeId, employmentDate, jubileeDate, dateProfessionalCompetence, dateTeachingSkills);
+            _employeeRepository.EditEmploymentInformation(employmentInformationId, employmentDate, jubileeDate, dateProfessionalCompetence, dateTeachingSkills);
         }
 
-        public void EditFinancialInformation(int employeeId, Decimal salary, DateTime nextSalaryDiscussion, string accountNumber, string bank)
+        public void EditFinancialInformation(int financialInformationId, Decimal salary, DateTime nextSalaryDiscussion, string accountNumber, string bank)
         {
-            _employeeRepository.EditFinancialInformation(employeeId, salary, nextSalaryDiscussion, accountNumber, bank);
+            _employeeRepository.EditFinancialInformation(financialInformationId, salary, nextSalaryDiscussion, accountNumber, bank);
         }
 
         public CreateEmployeeViewModel GetEmployeeForCreate()
@@ -237,6 +239,21 @@ namespace HRManagement.Application
         public void AttachImage(int employeeId, string imageUrl)
         {
             _employeeRepository.AttachImage(employeeId, imageUrl);
+        }
+
+         List<GetTrainingListForEmployeeToAssignViewModel> IEmployeeService.GetTrainingsToAssign(int? id)
+        {
+            var trainingsToAssign = _trainingRepository.GetAllTrainings();
+
+            return trainingsToAssign.Select(x => new GetTrainingListForEmployeeToAssignViewModel
+            {
+                Id = x.Id,
+                Name = x.Name,
+                StartDate = x.StartDate,
+                EndDate = x.EndDate,
+                Status = x.Status,
+                StatusDescription = x.Status.GetDescription()
+            }).ToList();
         }
 
         

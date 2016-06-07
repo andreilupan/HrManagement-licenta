@@ -16,10 +16,12 @@ namespace HRManagement.Controllers
     public class ProjectController : Controller
     {
         private IProjectService _projectService;
+        private IExcelExporter _projectExporter;
         private HrContext db = new HrContext();
-        public ProjectController(IProjectService projectService)
+        public ProjectController(IProjectService projectService, IExcelExporter projectExporter)
         {
             _projectService = projectService;
+            _projectExporter = projectExporter;
         }
 
         // GET: Project
@@ -147,6 +149,30 @@ namespace HRManagement.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public class ProjectExportViewModel
+        {
+            public int Id { get; set; }
+            public string Name { get; set; }
+            public string Description { get; set; }
+            public string Employees { get; set; }
+        }
+
+        [HttpGet, ActionName("ExportProjects")]
+        public FileResult ExportProjects()
+        {
+            var projects = db.Projects.ToList().Select(x => new ProjectExportViewModel
+            {
+                Id = x.Id,
+                Name = x.Name,
+                Description = x.Description,
+                Employees = x.Employees.Any() ? x.Employees.Select(y => y.FullName).Aggregate((current, next) => current + " , " + next) : "",
+
+
+            }).ToList();
+            var url = _projectExporter.ExportProjects(projects, "projects");
+            return File(url, "application/vnd.ms-excel", "projects.xlsx");
         }
     }
 }

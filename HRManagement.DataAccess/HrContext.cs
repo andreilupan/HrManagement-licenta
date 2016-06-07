@@ -16,6 +16,7 @@ namespace HRManagement.DataAccess
         public DbSet<Competency> Competencies { get; set; }
         public DbSet<ContactInformation> ContactInformation { get; set; }
         public DbSet<EmploymentInformation> EmploymentInformation { get; set; }
+        public DbSet<FinancialInformation> FinancialInformation { get; set; }
         public DbSet<Position> Positions { get; set; }
         public DbSet<Project> Projects { get; set; }
         public DbSet<Training> Trainings { get; set; }

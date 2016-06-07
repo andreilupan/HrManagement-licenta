@@ -206,11 +206,11 @@
     <Compile Include="Controllers\ProjectController.cs" />
     <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Controllers\TrainingController.cs" />
-    <Compile Include="ExcelExporter.cs" />
+    <Compile Include="ExcelExporter\ExcelExporter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="IExcelExporter.cs" />
+    <Compile Include="ExcelExporter\IExcelExporter.cs" />
     <Compile Include="ImageService.cs" />
     <Compile Include="Migrations\201604181928318_InitialCreate.cs" />
     <Compile Include="Migrations\201604181928318_InitialCreate.Designer.cs">
@@ -329,6 +329,9 @@
     <Folder Include="App_Data\" />
     <Folder Include="EmployeeData\Images\" />
     <Folder Include="EmployeeData\Reports\" />
+    <Folder Include="PositionData\Reports\" />
+    <Folder Include="ProjectData\Reports\" />
+    <Folder Include="TrainingData\Reports\" />
     <Folder Include="Views\Reports\" />
   </ItemGroup>
   <ItemGroup>

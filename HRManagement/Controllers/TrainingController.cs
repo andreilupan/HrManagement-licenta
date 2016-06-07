@@ -16,10 +16,12 @@ namespace HRManagement.Controllers
     public class TrainingController : Controller
     {
         private ITrainingService _trainingService;
+        private IExcelExporter _trainingExporter;
         private HrContext db = new HrContext();
-        public TrainingController(ITrainingService trainingService)
+        public TrainingController(ITrainingService trainingService, IExcelExporter trainingExporter)
         {
             _trainingService = trainingService;
+            _trainingExporter = trainingExporter;
         }
 
         // GET: Training
@@ -146,6 +148,34 @@ namespace HRManagement.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public class TrainingExportViewModel
+        {
+            public int Id { get; set; }
+            public string Name { get; set; }
+            public DateTime StartDate { get; set; }
+            public DateTime EndDate { get; set; }
+            public string Status { get; set; }
+            public string Employees { get; set; }
+        }
+
+        [HttpGet, ActionName("ExportTrainings")]
+        public FileResult ExportTrainings()
+        {
+            var trainings = db.Trainings.ToList().Select(x => new TrainingExportViewModel
+            {
+                Id = x.Id,
+                Name = x.Name,
+                StartDate = x.StartDate,
+                EndDate = x.EndDate,
+                Status = x.Status.ToString(),
+                Employees = x.Employees.Any() ? x.Employees.Select(y => y.FullName).Aggregate((current, next) => current + " , " + next) : "",
+                
+
+            }).ToList();
+            var url = _trainingExporter.ExportTrainings(trainings, "trainings");
+            return File(url, "application/vnd.ms-excel", "trainings.xlsx");
         }
     }
 }

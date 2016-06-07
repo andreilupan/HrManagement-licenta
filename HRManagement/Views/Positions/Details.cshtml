@@ -4,7 +4,7 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Job description</h2>
 
 <div>
     <h4>Position</h4>
@@ -16,6 +16,13 @@
 
         <dd>
             @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Technology)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Technology)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.LevelOfExperience)

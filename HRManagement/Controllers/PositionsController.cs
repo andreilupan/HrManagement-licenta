@@ -12,11 +12,13 @@ namespace HRManagement.Controllers
     public class PositionsController : Controller
     {
         private IPositionService _positionService;
+        private IExcelExporter _positionExporter;
         public HrContext db = new HrContext();
 
-        public PositionsController(IPositionService positionService)
+        public PositionsController(IPositionService positionService, IExcelExporter positionExporter)
         {
             _positionService = positionService;
+            _positionExporter = positionExporter;
         }
 
         // GET: Positions
@@ -68,7 +70,7 @@ namespace HRManagement.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Description")] Position position)
+        public ActionResult Create([Bind(Include = "Id,Name,Description,Technology,LevelOfExperience")] Position position)
         {
             if (ModelState.IsValid)
             {
@@ -100,7 +102,7 @@ namespace HRManagement.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Description")] Position position)
+        public ActionResult Edit([Bind(Include = "Id,Name,Description,Technology,LevelOfExperience")] Position position)
         {
             if (ModelState.IsValid)
             {
@@ -144,6 +146,34 @@ namespace HRManagement.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public class PositionExportViewModel
+        {
+            public int Id { get; set; }
+            public string Name { get; set; }
+            public string Description { get; set; }
+            public string Technology { get; set; }
+            public string LevelOfExperience { get; set; }
+            public string Employees { get; set; }
+        }
+
+        [HttpGet, ActionName("ExportPositions")]
+        public FileResult ExportPositions()
+        {
+            var positions = db.Positions.ToList().Select(x => new PositionExportViewModel
+            {
+                Id = x.Id,
+                Name = x.Name,
+                Description = x.Description,
+                Technology = x.Technology,
+                LevelOfExperience = x.LevelOfExperience.ToString(),
+                Employees = x.Employees.Any() ? x.Employees.Select(y => y.FullName).Aggregate((current, next) => current + " , " + next) : "",
+
+
+            }).ToList();
+            var url = _positionExporter.ExportPositions(positions, "positions");
+            return File(url, "application/vnd.ms-excel", "positions.xlsx");
         }
     }
 }
