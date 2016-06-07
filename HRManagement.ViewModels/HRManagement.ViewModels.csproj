@@ -48,6 +48,8 @@
     <Compile Include="Employee\EditEmployeeViewModel.cs" />
     <Compile Include="Employee\EditEmploymentInfomationForEmployeeViewModel.cs" />
     <Compile Include="Employee\EditFinancialInformationForEmployeeViewModel.cs" />
+    <Compile Include="Employee\EmployeeAssignTrainingTrigger.cs" />
+    <Compile Include="Employee\EmployeeIndexViewModel.cs" />
     <Compile Include="Employee\GetContactInformationForEmployeeViewModel.cs" />
     <Compile Include="Employee\GetEmploymentInformationForEmployeeViewModel.cs" />
     <Compile Include="Employee\GetFinancialInformationForEmployeeViewModel.cs" />

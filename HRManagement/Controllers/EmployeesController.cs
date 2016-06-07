@@ -6,6 +6,7 @@ using HRManagement.Application;
 using HRManagement.ViewModels.Employee;
 using System.Linq;
 using System;
+using System.Collections.Generic;
 
 namespace HRManagement.Controllers
 {
@@ -41,6 +42,15 @@ namespace HRManagement.Controllers
         public ActionResult Index()
         {
             var model = _employeeService.GetAllEmployees();
+
+            return View(model);
+        }
+
+        public ActionResult Index(EmployeeAssignTrainingTrigger trigger)
+        {
+            var model = _employeeService.GetAllEmployees();
+            model.EmployeeAssignTrainingsTrigger = trigger;
+
             return View(model);
         }
 
@@ -279,6 +289,23 @@ namespace HRManagement.Controllers
             base.Dispose(disposing);
         }
 
+        public ActionResult AssignTrainingsToEmployee(AssignTrainigsToEmployeeInput input)
+        {
+
+            return RedirectToAction("Index");
+        }
+    }
+
+    public class AssignTrainigsToEmployeeInput
+    {
+        public int EmployeeId { get; set; }
+        public List<AssignTrainingsToEmployeeListItem> Trainigs { get; set; }
+    }
+
+    public class AssignTrainingsToEmployeeListItem
+    {
+        public int Id { get; set; }
+        public bool Checked { get; set; }
     }
 
     public class EmployeeExportViewModel

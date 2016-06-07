@@ -11,18 +11,6 @@ namespace HRManagement.Controllers
     [Authorize]
     public class HomeController : Controller
     {
-        private IEmployeeService _employeeService;
-
-        public HomeController(IEmployeeService employeeService)
-        {
-            _employeeService = employeeService;
-        }
-        public ActionResult Index()
-        {
-            var data = _employeeService.GetAllEmployees();
-            return View();
-        }
-
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

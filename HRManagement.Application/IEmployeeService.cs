@@ -7,7 +7,7 @@ namespace HRManagement.Application
 {
     public interface IEmployeeService
     {
-        List<Employee> GetAllEmployees();
+        EmployeeIndexViewModel GetAllEmployees();
         EditEmployeeViewModel GetEmployeeForEdit(int? id);
         EditEmploymentInfomationForEmployeeViewModel GetEmploymentInformationForEdit(int? id);
         EditContactInformationForEmployeeViewModel GetContactInformationForEdit(int? id);

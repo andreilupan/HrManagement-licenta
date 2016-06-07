@@ -25,9 +25,16 @@ namespace HRManagement.Application
 
 
         }
-        public List<Employee> GetAllEmployees()
+        public EmployeeIndexViewModel GetAllEmployees()
         {
-            return _employeeRepository.GetAllEmployees().ToList();
+            var employees = _employeeRepository.GetAllEmployees().ToList();
+            var trainings = _trainingRepository.GetAllTrainings();
+
+            return new EmployeeIndexViewModel
+            {
+                Employees = employees,
+                Trainings = trainings
+            };
         }
 
         public GetContactInformationForEmployeeViewModel GetContactInformationForEmployee(int? id)
@@ -77,7 +84,7 @@ namespace HRManagement.Application
                 JubileeDate = employee.EmploymentInformation.JubileeDate,
                 DateForFormalProfessionalCompetence = employee.EmploymentInformation.DateForFormalProfessionalCompetence,
                 DateForFormalTeachingSkills = employee.EmploymentInformation.DateForFormalTeachingSkills
-                
+
             };
 
             return model;
@@ -131,7 +138,7 @@ namespace HRManagement.Application
                 AccountNumber = employee.FinancialInformation.AccountNumber,
                 Bank = employee.FinancialInformation.Bank
 
-                 
+
             };
 
             return model;
@@ -241,7 +248,7 @@ namespace HRManagement.Application
             _employeeRepository.AttachImage(employeeId, imageUrl);
         }
 
-         List<GetTrainingListForEmployeeToAssignViewModel> IEmployeeService.GetTrainingsToAssign(int? id)
+        List<GetTrainingListForEmployeeToAssignViewModel> IEmployeeService.GetTrainingsToAssign(int? id)
         {
             var trainingsToAssign = _trainingRepository.GetAllTrainings();
 
@@ -256,6 +263,6 @@ namespace HRManagement.Application
             }).ToList();
         }
 
-        
+
     }
 }
