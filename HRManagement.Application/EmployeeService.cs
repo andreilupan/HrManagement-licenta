@@ -28,7 +28,7 @@ namespace HRManagement.Application
         public EmployeeIndexViewModel GetAllEmployees()
         {
             var employees = _employeeRepository.GetAllEmployees().ToList();
-            var trainings = _trainingRepository.GetAllTrainings();
+            var trainings = _trainingRepository.GetAllTrainings().ToList();
 
             return new EmployeeIndexViewModel
             {

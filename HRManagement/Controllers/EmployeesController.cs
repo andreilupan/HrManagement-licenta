@@ -38,21 +38,33 @@ namespace HRManagement.Controllers
 
             return View("Index", model);
         }
+
+        [HttpGet]
         // GET: Employees
         public ActionResult Index()
         {
             var model = _employeeService.GetAllEmployees();
-
+            
             return View(model);
         }
 
-        public ActionResult Index(EmployeeAssignTrainingTrigger trigger)
+        [HttpGet]
+        public ActionResult Index2(bool ExpandTrainings, int EmployeeId)
         {
             var model = _employeeService.GetAllEmployees();
-            model.EmployeeAssignTrainingsTrigger = trigger;
-
-            return View(model);
+            model.EmployeeAssignTrainingsTrigger = new EmployeeAssignTrainingTrigger { ExpandTrainings = ExpandTrainings, EmployeeId = EmployeeId };
+            for (var i = 0; i < model.Trainings.Count(); i++)
+            {
+                var t = model.Employees.First(x => x.Id == model.EmployeeAssignTrainingsTrigger.EmployeeId).Trainings.Select(x => x.Id).Contains(model.Trainings.ElementAt(i).Id);
+            }
+            return View("Index",model);
         }
+
+        //[HttpPost]
+        //public ActionResult Index(AssignTrainigsToEmployeeInput input)
+        //{
+        //    return View();
+        //}
 
         // GET: Employees/Details
         public ActionResult Details(int? id)
@@ -289,8 +301,17 @@ namespace HRManagement.Controllers
             base.Dispose(disposing);
         }
 
+        [HttpPost]
         public ActionResult AssignTrainingsToEmployee(AssignTrainigsToEmployeeInput input)
         {
+
+            //var employee = employeeRepo.Find(employeeId);
+            // employee.Trainings.Clear();
+            // var attendedTrainings = input.Trainings.Where(x=>x.Checked==true);
+            // foreach(var training in attendedTrainings){
+            // employee.Trainings.Add(_trainingRepo.Find(training.Id)
+            // } 
+            // db.SaveChanges();
 
             return RedirectToAction("Index");
         }
@@ -299,7 +320,7 @@ namespace HRManagement.Controllers
     public class AssignTrainigsToEmployeeInput
     {
         public int EmployeeId { get; set; }
-        public List<AssignTrainingsToEmployeeListItem> Trainigs { get; set; }
+        public List<AssignTrainingsToEmployeeListItem> Trainings { get; set; }
     }
 
     public class AssignTrainingsToEmployeeListItem
