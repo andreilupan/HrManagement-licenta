@@ -24,5 +24,6 @@ namespace HRManagement.Application
         GetFinancialInformationForEmployeeViewModel GetFinancialInformationForEmployee(int? id);
         void AttachImage(int employeeId, string imageUrl);
         List<GetTrainingListForEmployeeToAssignViewModel> GetTrainingsToAssign(int? id);
-    }
+        void AssignTrainings(int employeeId, List<AssignTrainingsToEmployeeListItem> trainings);
+    };
 }

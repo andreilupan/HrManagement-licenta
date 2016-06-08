@@ -201,6 +201,11 @@ namespace HRManagement.Application
 
         }
 
+        public void AssignTrainings(int employeeId, List<AssignTrainingsToEmployeeListItem> trainings)
+        {
+            _employeeRepository.AssignTrainings(employeeId, trainings);
+        }
+
         public void SetChangesForEmployee(int employeeId, int positionId, int projectId, string lastName, string middleName, string firstName, DateTime dateOfBirth, Gender gender, string nationality, string nID)
         {
             _employeeRepository.SetChangesForEmployee(employeeId, positionId, projectId, lastName, middleName, firstName, dateOfBirth, gender, nationality, nID);

@@ -1,6 +1,8 @@
 ﻿using HRManagement.DataAccess.Models.Models;
 using System.Linq;
 using System;
+using HRManagement.ViewModels.Employee;
+using System.Collections.Generic;
 
 namespace HRManagement.DataAccess.Repositories
 {
@@ -37,6 +39,18 @@ namespace HRManagement.DataAccess.Repositories
             employee.Nationality = nationality;
             employee.NationalIdentificationNumber = nID;
 
+            _dbContext.SaveChanges();
+        }
+
+        public void AssignTrainings(int employeeId, List<AssignTrainingsToEmployeeListItem> trainings)
+        {
+            var employee = _dbContext.Employees.Find(employeeId);
+            employee.Trainings.Clear();
+            var attendedTrainings = trainings.Where(x => x.Checked == true);
+            foreach(var training in attendedTrainings)
+            {
+                employee.Trainings.Add(_dbContext.Trainings.Find(training.Id));
+            }
             _dbContext.SaveChanges();
         }
 

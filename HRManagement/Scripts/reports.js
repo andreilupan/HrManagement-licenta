@@ -65,8 +65,7 @@
         url: "/api/reports/population2",
         method: "GET"
     }).success(function (data) {
-        for (var i = 3; i <= 4; i++) {
-            $('#chart' + i).highcharts({
+            $('#chart3').highcharts({
                 chart: {
                     plotBackgroundColor: null,
                     plotBorderWidth: null,
@@ -101,10 +100,100 @@
                 formattedDate.push({ name: data[item].Description, y: data[item].Values });
             }
 
-            $('#chart' + i).highcharts().addSeries({ name: "Age", colorByPoint: true , data : formattedDate});
+            $('#chart3').highcharts().addSeries({ name: "Age", colorByPoint: true , data : formattedDate});
 
-            $('#chart' + i).highcharts().redraw();  
+            $('#chart3').highcharts().redraw();  
+        
+    });
+
+    $.ajax({
+        url: "/api/reports/population3",
+        method: "GET"
+    }).success(function (data) {
+        $('#chart4').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie'
+            },
+            title: {
+                text: 'Employees grouped by salary'
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                        style: {
+                            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                        }
+                    }
+                }
+            },
+
+        });
+
+        var formattedDate = [];
+
+        for (var item = 0 ; item < data.length; item++) {
+            formattedDate.push({ name: data[item].Description, y: data[item].Values });
         }
+
+        $('#chart4').highcharts().addSeries({ name: "Salary", colorByPoint: true, data: formattedDate });
+
+        $('#chart4').highcharts().redraw();
+
+    });
+
+    $.ajax({
+        url: "/api/reports/population5",
+        method: "GET"
+    }).success(function (data) {
+        $('#chart5').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie'
+            },
+            title: {
+                text: 'Employees grouped by employment date'
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                        style: {
+                            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                        }
+                    }
+                }
+            },
+
+        });
+
+        var formattedDate = [];
+
+        for (var item = 0 ; item < data.length; item++) {
+            formattedDate.push({ name: data[item].Description, y: data[item].Values });
+        }
+
+        $('#chart5').highcharts().addSeries({ name: "Employment date", colorByPoint: true, data: formattedDate });
+
+        $('#chart5').highcharts().redraw();
+
     });
 
 });

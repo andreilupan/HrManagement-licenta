@@ -60,11 +60,6 @@ namespace HRManagement.Controllers
             return View("Index",model);
         }
 
-        //[HttpPost]
-        //public ActionResult Index(AssignTrainigsToEmployeeInput input)
-        //{
-        //    return View();
-        //}
 
         // GET: Employees/Details
         public ActionResult Details(int? id)
@@ -302,9 +297,10 @@ namespace HRManagement.Controllers
         }
 
         [HttpPost]
-        public ActionResult AssignTrainingsToEmployee(AssignTrainigsToEmployeeInput input)
+        public ActionResult AssignTrainingsToEmployee(AssignTrainingsToEmployeeInput input)
         {
 
+            _employeeService.AssignTrainings(input.EmployeeId, input.Trainings);
             //var employee = employeeRepo.Find(employeeId);
             // employee.Trainings.Clear();
             // var attendedTrainings = input.Trainings.Where(x=>x.Checked==true);
@@ -317,7 +313,7 @@ namespace HRManagement.Controllers
         }
     }
 
-    public class AssignTrainigsToEmployeeInput
+    /*public class AssignTrainigsToEmployeeInput
     {
         public int EmployeeId { get; set; }
         public List<AssignTrainingsToEmployeeListItem> Trainings { get; set; }
@@ -327,7 +323,7 @@ namespace HRManagement.Controllers
     {
         public int Id { get; set; }
         public bool Checked { get; set; }
-    }
+    }*/
 
     public class EmployeeExportViewModel
     {

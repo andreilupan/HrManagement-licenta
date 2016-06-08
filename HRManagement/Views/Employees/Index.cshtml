@@ -53,15 +53,17 @@
 
 @if (Model.EmployeeAssignTrainingsTrigger != null)
 {
+
     using (Html.BeginForm("AssignTrainingsToEmployee", "Employees", FormMethod.Post))
     {
         for (var i = 0; i < Model.Trainings.Count(); i++)
         {
+            
             <input type="text" style="display:none" name="Trainings[@i].Id" value="@Model.Trainings.ElementAt(i).Id" />
-            <label>@Model.Trainings.ElementAt(i).Name</label>
+            <label class="">@Model.Trainings.ElementAt(i).Name</label>
             if (Model.Employees.First(x => x.Id == Model.EmployeeAssignTrainingsTrigger.EmployeeId).Trainings.Select(x => x.Id).Contains(Model.Trainings.ElementAt(i).Id))
             {
-                <input type="checkbox" value="true" name="Trainings[@i].Checked" checked="checked" />
+                <input type="checkbox" value="true" name="Trainings[@i].Checked" checked="checked" class="" />
             }
             else
             {
@@ -70,7 +72,8 @@
             <br />
         }
         <input type="number" style="display:none" name="EmployeeId" value="@Model.EmployeeAssignTrainingsTrigger.EmployeeId" />
-        <input type="submit" class="btn btn-default" value="Assign Trainings" />
+        <br />
+        <input type="submit" class="btn btn-success" value="Assign Trainings" />
     }
 }
 <script>
