@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -128,63 +129,42 @@ namespace HRManagement.Controllers
         [Route("population")]
         public ActionResult GetPopulation()
         {
-            var model = new[] { new
-            {
-                City = "Satu Mare",
-                PopulationPerMonth = new[] {
-                    12.4,
-                    23.5,
-                    32.9,
-                    43.5,
-                    12.4,
-                    43.6,
-                    22.4,
-                    23.2,
-                    22.4,
-                    33.1,
-                    12.0,
-                    23.5
-                }
-            },
-            new {
-                City = "Cluj",
-                PopulationPerMonth = new[] {
-                    32.9,
-                    43.6,
-                    22.4,
-                    23.2,
-                    22.4,
-                    12.4,
-                    12.4,
-                    23.5,
-                    33.1,
-                    43.5,
-                    12.0,
-                    23.5,
+            var data = dbContext.Positions.ToList();
+            var employees = dbContext.Employees.ToList();
+            var months = Enumerable.Range(1, 12);
 
-                }
-            },
-            new {
-                City = "Baia Mare",
-                PopulationPerMonth = new[] {
-                    12.4,
-                    23.5,
-                    43.5,
-                    43.6,
-                    12.4,
-                    22.4,
-                    23.2,
-                    23.5,
-                        22.4,
-                    33.1,
-                    32.9,
-                    12.0,
+            List<CustomTuple<int, string, int>> d = new List<CustomTuple<int, string, int>>();
+
+            foreach (var position in data)
+            {
+                foreach (var month in months)
+                {
+                    d.Add(new CustomTuple<int, string, int>(month, position.Name.ToString(), 0));
                 }
             }
-            };
 
+            foreach (var employee in employees)
+            {
+                d.FirstOrDefault(x => x.Item1 == employee.EmploymentInformation.EmploymentDate.Month && x.Item2 == employee.Position.Name.ToString()).Item3 += 1;
+            }
+
+            var model = d.GroupBy(x => x.Item2).Select(x => new { ExperienceLevel = x.Key, EmploymentsPerMonth = x.OrderBy(y=>y.Item1).Select(y=>y.Item3) });
 
             return Json(model, JsonRequestBehavior.AllowGet);
+        }
+    }
+
+    public class CustomTuple<T1, T2,T3>
+    {
+        public T1 Item1 { get; set; }
+        public T2 Item2 { get; set; }
+        public T3 Item3 { get; set; }
+
+        public CustomTuple(T1 item1, T2 item2, T3 item3)
+        {
+            Item1 = item1;
+            Item2 = item2;
+            Item3 = item3;
         }
     }
 }

@@ -159,6 +159,12 @@ textarea {
                 .sidebar-nav li:nth-child(9):before {
                     background-color: #35acdf;
                 }
+                .sidebar-nav li:nth-child(10):before {
+                    background-color: darkslategray;
+                }
+                .sidebar-nav li:nth-child(11):before {
+                    background-color: darkgoldenrod;
+                }
 
                 .sidebar-nav li:hover:before,
                 .sidebar-nav li.open:hover:before {

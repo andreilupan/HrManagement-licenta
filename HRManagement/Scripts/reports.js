@@ -54,7 +54,7 @@
                 }
             });
             for (var item = 0 ; item< data.length;item++) {
-                $('#chart' + i).highcharts().addSeries({ name: data[item].City, data: data[item].PopulationPerMonth }, false);
+                $('#chart' + i).highcharts().addSeries({ name: data[item].ExperienceLevel, data: data[item].EmploymentsPerMonth }, false);
             }
             $('#chart' + i).highcharts().redraw();
         }
